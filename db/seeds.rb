@@ -9,5 +9,5 @@
 30.times do |i|
   Link.create(title: Faker::Lorem.sentence,
               url: Faker::Internet.url,
-              votes: rand(0..100))
+              votes: rand(-100..100))
 end
