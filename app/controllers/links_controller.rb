@@ -36,16 +36,12 @@ class LinksController < ApplicationController
   end
 
   def upvote
-    votes = @link.votes
-    @link.votes.nil? ? votes = 1 : votes += 1
-    @link.update(votes: votes)
+    @link.upvote
     redirect_to request.referer
   end
 
   def downvote
-    votes = @link.votes
-    @link.votes.nil? ? votes = -1 : votes -= 1
-    @link.update(votes: votes)
+    @link.downvote
     redirect_to request.referer
   end
 
