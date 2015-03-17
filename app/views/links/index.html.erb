@@ -1,2 +1,12 @@
-<h1>Links#index</h1>
-<p>Find me in app/views/links/index.html.erb</p>
+<h1>All the Links</h1>
+<%= link_to "Add a link", new_link_path, class: "btn btn-info" %>
+<% @links.each do |link| %>
+<hr>
+  <h3>
+    <span class="label label-warning"><%= link.votes %></span>
+    <%= link_to link.title, link.url%> 
+    <%= link_to "VIEW LINK", link, class: "btn btn-primary" %>
+    <%= link_to "UPVOTE", upvote_path(link), class: "btn btn-success" %>
+    <%= link_to "DOWNVOTE", downvote_path(link), class: "btn btn-danger" %>
+  </h3>
+<% end %>

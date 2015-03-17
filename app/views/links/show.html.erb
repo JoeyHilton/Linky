@@ -1,2 +1,7 @@
-<h1>Links#show</h1>
-<p>Find me in app/views/links/show.html.erb</p>
+<%= link_to 'BACK', links_path, class: "btn btn-default" %>
+<%= link_to "EDIT", edit_link_path(@link), class: "btn btn-info"  %>
+<%= link_to "DELETE", @link, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"   %>
+<h3><%= @link.title%> <span class="label label-success"><%= @link.votes %></span></h3>
+<h4><%= link_to @link.url, @link.url %></h4>
+<%= link_to "UPVOTE", upvote_path(@link), class: "btn btn-success" %>
+  <%= link_to "DOWNVOTE", downvote_path(@link), class: "btn btn-danger" %>

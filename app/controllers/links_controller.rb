@@ -1,7 +1,7 @@
 class LinksController < ApplicationController
-  before_action :set_link, only: [:show, :edit, :update, :destroy]
+  before_action :set_link, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
   def index
-    @links = Links.all
+    @links = Link.all.order(votes: :desc)
   end
 
   def show
@@ -12,6 +12,7 @@ class LinksController < ApplicationController
   end
 
   def create
+    @link = Link.new(link_params)
     if @link.save
       redirect_to @link
     else
@@ -34,10 +35,28 @@ class LinksController < ApplicationController
     @link.destroy
   end
 
+  def upvote
+    votes = @link.votes
+    @link.votes.nil? ? votes = 1 : votes += 1
+    @link.update(votes: votes)
+    redirect_to request.referer
+  end
+
+  def downvote
+    votes = @link.votes
+    @link.votes.nil? ? votes = -1 : votes -= 1
+    @link.update(votes: votes)
+    redirect_to request.referer
+  end
+
   private
 
   def set_link
     @link = Link.find(params[:id])
+  end
+
+  def link_params
+    params.require(:link).permit(:title, :url, :votes)
   end
 
 end
