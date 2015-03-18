@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root 'links#index'
 
+  devise_for :users, :controllers => { registrations: 'registrations' }
+  resources :users, only: [:show, :index]
+  get 'profile' => 'users#profile'
   resources :links
+  
   get 'upvote/:id', to: 'links#upvote', as: :upvote
   get 'downvote/:id', to: 'links#downvote', as: :downvote
 
