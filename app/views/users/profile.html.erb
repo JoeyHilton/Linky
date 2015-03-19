@@ -1,2 +1,8 @@
-<h1>Users#profile</h1>
-<p>Find me in app/views/users/profile.html.erb</p>
+<h1>My Profile</h1>
+<h2><%= @user.name %></h2>
+<h3><%= @user.email %></h3>
+<p>
+  <%= @user.bio %>
+</p>
+
+<%= button_to 'Edit Profile', edit_user_registration_path, class: "btn btn-primary", method: :get%>
