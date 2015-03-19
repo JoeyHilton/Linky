@@ -45,12 +45,12 @@ class LinksController < ApplicationController
 
   def upvote
     @link.upvote
-    redirect_to request.referer
+    redirect_to @link
   end
 
   def downvote
     @link.downvote
-    redirect_to request.referer
+    redirect_to @link
   end
 
   private
