@@ -1,4 +1,5 @@
 class LinksController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_link, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
   def index
     @links = Link.all.order(votes: :desc)
@@ -21,6 +22,9 @@ class LinksController < ApplicationController
   end
 
   def edit
+    if @link.user != current_user
+      redirect_to @link, notice: "Nope"
+    end
   end
 
   def update
@@ -32,7 +36,11 @@ class LinksController < ApplicationController
   end
 
   def destroy
-    @link.destroy
+    if @link.user == current_user
+      @link.destroy
+    else
+      redirect_to @link, notice: "Nope"
+    end
   end
 
   def upvote
@@ -52,7 +60,7 @@ class LinksController < ApplicationController
   end
 
   def link_params
-    params.require(:link).permit(:title, :url, :votes)
+    params.require(:link).permit(:title, :url, :votes, :user_id)
   end
 
 end

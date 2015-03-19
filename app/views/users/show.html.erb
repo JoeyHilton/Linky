@@ -4,3 +4,8 @@
 <p>
   <%= @user.bio %>
 </p>
+
+<h3><%= @user.name %>'s Links</h3>
+<% @user.links.each do |link| %>
+  <p><%= link_to link.title, link_path(link) %></p>
+<% end %>

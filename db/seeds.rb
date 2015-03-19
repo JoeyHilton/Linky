@@ -18,7 +18,8 @@ end
 30.times do
   Link.create(title: Faker::Lorem.sentence,
               url: Faker::Internet.url,
-              votes: rand(-100..100))
+              votes: rand(-100..100),
+              user_id: User.ids.sample)
 end
 
 

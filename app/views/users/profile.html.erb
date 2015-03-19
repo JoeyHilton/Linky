@@ -6,3 +6,8 @@
 </p>
 
 <%= button_to 'Edit Profile', edit_user_registration_path, class: "btn btn-primary", method: :get%>
+
+<h3>My Links</h3>
+<% @user.links.each do |link| %>
+  <p><%= link_to link.title, link_path(link) %></p>
+<% end %>
