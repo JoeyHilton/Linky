@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users, only: [:show, :index]
   get 'profile' => 'users#profile'
-  resources :links
+  resources :links do
+    resources :comments, except: [:index, :show]
+  end
   
   get 'upvote/:id', to: 'links#upvote', as: :upvote
   get 'downvote/:id', to: 'links#downvote', as: :downvote
