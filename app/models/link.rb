@@ -2,6 +2,8 @@ class Link < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   belongs_to :user
 
+  enum category: %w(general random cute news)
+
   def upvote
     self.votes += 1
     self.save

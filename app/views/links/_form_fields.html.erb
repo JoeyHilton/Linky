@@ -1,7 +1,8 @@
 <%= bootstrap_form_for @link do |f| %>
   <%= f.text_field :title %>
 
-  <%= f.text_field :url %>
+  <%= f.url_field :url %>
+  <%= f.select :category, Link.categories.keys.map { |c| [c.capitalize, c]} %>
 
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.submit "Yeah Boy" %>
