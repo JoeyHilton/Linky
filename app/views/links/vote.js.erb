@@ -1,1 +1,2 @@
-alert( "You are using AJAX");
+console.log( "You are using AJAX");
+$( '#voteBadge-<%= @link.id %>').html('<%= vote_badge(@link) %>');
