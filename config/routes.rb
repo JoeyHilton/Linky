@@ -8,8 +8,7 @@ Rails.application.routes.draw do
     resources :comments, except: [:index, :show]
   end
   
-  get 'upvote/:id', to: 'links#upvote', as: :upvote
-  get 'downvote/:id', to: 'links#downvote', as: :downvote
+  get 'vote/:id', to: 'links#vote', as: :vote
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
