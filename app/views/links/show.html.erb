@@ -5,10 +5,10 @@
 <% end %>
 
 
-<h3><%= @link.title%> <%= vote_badge(@link) %> <small><%= @link.category.capitalize %></small></h3>
+<h3><%= @link.title%> <span id="voteBadge-<%= @link.id %>"><%= vote_badge(@link) %></span> <small><%= @link.category.capitalize %></small></h3>
 <h4><%= link_to @link.url, @link.url %></h4>
-<%= link_to "UPVOTE", vote_path(@link, vote: 'up'), class: "btn btn-success" %>
-<%= link_to "DOWNVOTE", vote_path(@link, vote: 'down'), class: "btn btn-danger" %>
+<%= link_to "UPVOTE", vote_path(@link, vote: 'up'), class: "btn btn-success", remote: true %>
+<%= link_to "DOWNVOTE", vote_path(@link, vote: 'down'), class: "btn btn-danger", remote: true %>
 
 <h3>Posted by <%= link_to @link.user.name, user_path(@link.user) %></h3>
 
