@@ -49,7 +49,12 @@ class LinksController < ApplicationController
     elsif params[:vote] == "down"
       @link.downvote
     end  
-    redirect_to @link
+
+    respond_to do |format|
+      format.html { redirect_to @link }
+      format.js 
+    end
+    
   end
 
   private
