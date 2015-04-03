@@ -44,9 +44,9 @@ class LinksController < ApplicationController
   end
 
   def vote
-    if params[:vote] = "up"
+    if params[:vote] == "up"
       @link.upvote
-    elsif params[:vote] = "down"
+    elsif params[:vote] == "down"
       @link.downvote
     end  
     redirect_to @link
