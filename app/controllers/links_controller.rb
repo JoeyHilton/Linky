@@ -1,6 +1,6 @@
 class LinksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_link, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
+  before_action :set_link, only: [:show, :edit, :update, :destroy, :vote]
   def index
     @links = Link.all.order(votes: :desc)
   end
@@ -43,13 +43,12 @@ class LinksController < ApplicationController
     end
   end
 
-  def upvote
-    @link.upvote
-    redirect_to @link
-  end
-
-  def downvote
-    @link.downvote
+  def vote
+    if params[:vote] = "up"
+      @link.upvote
+    elsif params[:vote] = "down"
+      @link.downvote
+    end  
     redirect_to @link
   end
 
