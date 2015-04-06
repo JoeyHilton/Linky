@@ -2,6 +2,8 @@ class Link < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   belongs_to :user
 
+  validates :title, presence: true
+
   enum category: %w(general random cute news)
 
   def upvote

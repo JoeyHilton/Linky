@@ -1,5 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Link, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'work with links' do
+    subject { create(:link) }
+
+    it 'should have a title' do
+      subject.title = ' '
+      assert subject.invalid?
+    end
+
+  end
 end
