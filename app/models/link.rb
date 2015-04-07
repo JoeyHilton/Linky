@@ -3,6 +3,7 @@ class Link < ActiveRecord::Base
   belongs_to :user
 
   validates :title, presence: true
+  validates :url, presence: true
 
   enum category: %w(general random cute news)
 

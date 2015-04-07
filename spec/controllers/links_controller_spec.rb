@@ -3,7 +3,9 @@ require 'rails_helper'
 RSpec.describe LinksController, :type => :controller do
 
   let!(:user) { create(:user) }
-  before { sign_in user }
+  let!(:boss_link) { create(:boss_link) }
+  let!(:boss) { boss_link.user }
+  before { sign_in boss }
 
   describe 'GET index' do
     it 'successfully gets the index page' do
@@ -47,8 +49,35 @@ RSpec.describe LinksController, :type => :controller do
     it 'redirects to the link page on save' do
       post :create, link: attributes_for(:link)
       @link = assigns(:link)
-      binding.pry
       expect(response).to redirect_to(@link)
+    end
+  end
+
+  describe 'GET edit' do
+    it 'successfully gets the edit page' do
+      get :edit, id: boss_link.id
+      expect(response).to render_template(:edit)
+    end
+
+    it 'redirects if not link owner' do
+      sign_in user 
+      get :edit, id: boss_link.id
+      @link = assigns :link
+      expect(response).to redirect_to(@link)
+      expect(flash[:notice]).to eq("Nope")
+    end
+  end
+
+  describe 'POST update' do
+    it 'successfully updates a link' do
+      post :update, id: boss_link.id, link: { title: "Updated"}
+      link = assigns :link
+      expect(link.title).to eq("Updated") 
+    end
+
+    it 'renders edit if form invalid' do
+      post :update, id: boss_link.id, link: { title: " "}
+      expect(response).to render_template(:edit)
     end
   end
 
