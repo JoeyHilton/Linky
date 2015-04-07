@@ -1,5 +1,5 @@
 <h1>All the Links</h1>
-<%= link_to "Add a link", new_link_path, class: "btn btn-info" %>
+<%= link_to "Add a link", new_link_path, remote: true, class: "btn btn-info" %>
 <% @links.each do |link| %>
 <hr>
   <h3>
