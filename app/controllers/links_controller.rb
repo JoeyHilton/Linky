@@ -1,7 +1,8 @@
 class LinksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_link, only: [:show, :edit, :update, :destroy, :vote]
-  
+  respond_to(:html, :js)
+
   def index
     @links = Link.all.order(votes: :desc)
   end
@@ -11,17 +12,15 @@ class LinksController < ApplicationController
 
   def new
     @link = Link.new
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   def create
     @link = Link.new(link_params)
     if @link.save
-      redirect_to @link
+      respond_to do |format|
+        format.html { redirect_to @link }
+        format.js 
+      end
     else
       render :new
     end

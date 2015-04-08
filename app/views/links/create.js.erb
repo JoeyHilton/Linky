@@ -1,0 +1,3 @@
+console.log('Using AJAX for create');
+$('#linkModal').modal('hide');
+$('#linkList').prepend('<%= j render partial: "link_row", locals: { link: @link } %>');

@@ -1,3 +1,4 @@
 console.log('Its working');
-$('#linkModalBody').html('<%= j render partial: "form_fields", locals: { link: @link} %>');
+$('#linkModalBody').html('<%= j render partial: "form_fields", locals: { link: @link, using_modal: true} %>');
+$('#linkModalTitle').html('Edit Link');
 $('#linkModal').modal('show');

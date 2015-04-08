@@ -1,4 +1,4 @@
-<%= bootstrap_form_for link do |f| %>
+<%= bootstrap_form_for link, remote: using_modal do |f| %>
   <%= f.text_field :title %>
 
   <%= f.url_field :url %>

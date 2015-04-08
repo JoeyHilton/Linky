@@ -1,0 +1,9 @@
+<hr>
+<h3>
+  <%= vote_badge(link) %>
+  <%= link_to link.title, link.url%> 
+  <small><%= link.category.capitalize %></small>
+  <%= link_to "VIEW LINK", link, class: "btn btn-primary" %>
+  <%= link_to "UPVOTE", vote_path(link, vote: 'up'), class: "btn btn-success" %>
+  <%= link_to "DOWNVOTE", vote_path(link, vote: 'down'), class: "btn btn-danger" %>
+</h3>

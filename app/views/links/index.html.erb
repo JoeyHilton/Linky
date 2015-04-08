@@ -1,16 +1,10 @@
 <%= image_tag 'all_links.jpg', class: "img img-responsive center-block" %>
 <%= link_to "Add a link", new_link_path, remote: true, class: "btn btn-info btn-lg" %>
-<% @links.each do |link| %>
-<hr>
-  <h3>
-    <%= vote_badge(link) %>
-    <%= link_to link.title, link.url%> 
-    <small><%= link.category.capitalize %></small>
-    <%= link_to "VIEW LINK", link, class: "btn btn-primary" %>
-    <%= link_to "UPVOTE", vote_path(link, vote: 'up'), class: "btn btn-success" %>
-    <%= link_to "DOWNVOTE", vote_path(link, vote: 'down'), class: "btn btn-danger" %>
-  </h3>
-<% end %>
+<div id="linkList">
+  <% @links.each do |link| %>
+    <%= render partial: 'link_row', locals: { link: link } %>
+  <% end %>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="linkModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -18,14 +12,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="gridSystemModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="linkModalTitle">Modal title</h4>
       </div>
       <div class="modal-body" id="linkModalBody">
         This shouldn't show
       </div>
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
