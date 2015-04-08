@@ -30,11 +30,6 @@ class LinksController < ApplicationController
     if @link.user != current_user
       redirect_to @link, notice: "Nope"
     end
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   def update
